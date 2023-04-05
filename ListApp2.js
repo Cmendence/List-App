@@ -1,5 +1,6 @@
 let id = 1;
 
+document.getElementById('task').focus();
 
 document.getElementById('btn').addEventListener('click', () => {
     console.log('button working')
