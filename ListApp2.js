@@ -16,6 +16,7 @@ document.getElementById('btn').addEventListener('click', () => {
     deleteBtn.appendChild(createDeleteButton(id++));
     document.getElementById('task').value = '';
     document.getElementById('setter').value = '';
+    document.getElementById('task').focus();
     // id++;
 });
 
@@ -44,10 +45,10 @@ function createDeleteButton(id) {
 }
 
 // Execute a function when the user presses a key on the keyboard
-document.addEventListener("keypress", function(event) {
+document.addEventListener('keypress', function(event) {
     // If the user presses the "Enter" key on the keyboard
-    if (event.key === "Enter") {
+    if (event.key === 'Enter') {
       // Trigger the button element with a click
-      document.getElementById("btn").click();
+      document.getElementById('btn').click();
     }
   });
