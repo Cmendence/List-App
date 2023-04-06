@@ -1,39 +1,41 @@
 let id = 1;
 
-document.getElementById('task').focus();
+thisId('task').focus();
 
-document.getElementById('btn').addEventListener('click', () => {
-    console.log('button working')
+thisId('btn').addEventListener('click', () => {
 
-    let isTaskValid = isValid('task', 'task-error');
-    let isSetterValid = isValid('setter', 'setter-error');
+    let isTaskValid = isFieldValid('task', 'task-error');
+    let isSetterValid = isFieldValid('setter', 'setter-error');
 
     if (isTaskValid && isSetterValid) {
     let date = new Date();
     let time = date.toLocaleString();
-    let table = document.getElementById('list');
+    let table = thisId('list');
     let row = table.insertRow(-1);
     row.setAttribute('id', `item-${id}`);
-    row.insertCell(0).innerHTML = id;
-    row.insertCell(1).innerHTML = time;
-    row.insertCell(2).innerHTML = document.getElementById('task').value;
-    row.insertCell(3).innerHTML = document.getElementById('setter').value;
+    cellHTML(row, 0, id);
+    cellHTML(row, 1, time);
+    cellHTML(row, 2, thisId('task').value)
+    cellHTML(row, 3, thisId('setter').value)
     let deleteBtn = row.insertCell(4);
     deleteBtn.appendChild(createDeleteButton(id++));
-    document.getElementById('task').value = '';
-    document.getElementById('setter').value = '';
-    document.getElementById('task').focus();
+    thisId('task').value = '';
+    thisId('setter').value = '';
+    clearValid('task');
+    clearValid('setter');
+    thisId('task').focus();
+
     // id++;
     }
 });
 
-document.getElementById('rick').addEventListener('mouseover', () => {
-    document.getElementById('rick').innerHTML = `I SAID DON'T`;
+thisId('rick').addEventListener('mouseover', () => {
+    thisId('rick').innerHTML = `I SAID DON'T`;
 })
-document.getElementById('rick').addEventListener('mouseout', () => {
-    document.getElementById('rick').innerHTML = `Don't click this`;
+thisId('rick').addEventListener('mouseout', () => {
+    thisId('rick').innerHTML = `Don't click this`;
 })
-document.getElementById('rick').addEventListener('click', () => {
+thisId('rick').addEventListener('click', () => {
     window.open("https://www.youtube.com/watch?v=xvFZjo5PgG0", "_blank");
 })
 
@@ -44,7 +46,7 @@ function createDeleteButton(id) {
     btn.className = 'btn  btn-success';
     btn.onclick = () => {
         console.log(`Deleting element with id: item-${id}`);
-        let elementToDelete = document.getElementById(`item-${id}`);
+        let elementToDelete = thisId(`item-${id}`);
         elementToDelete.parentNode.removeChild(elementToDelete);
     }
 
@@ -56,19 +58,49 @@ document.addEventListener('keypress', function(event) {
     // If the user presses the "Enter" key on the keyboard
     if (event.key === 'Enter') {
       // Trigger the button element with a click
-      document.getElementById('btn').click();
+      thisId('btn').click();
     }
   });
 
- function isValid(formInput, formInputError) {
-   let input = document.getElementById(formInput).value;
-   let inputError = document.getElementById(formInputError);
+
+  //checks if input field is empty. takes the input html id and the empty small text tag id below the field. if false, it changes 
+  //the textContent to 'field is empty' and adds the class 'is-valid', otherwise it leaves the content empty and adds the class 'is-valid'.
+
+ function isFieldValid(inputId, inputErrorId) {
+   let input = thisId(inputId).value;
+   let inputError = thisId(inputErrorId);
   
    if (input === '') {
+    thisId(inputId).classList.add('is-invalid');
        inputError.textContent = 'Field is Empty';
+       console.log(`added class 'is-invalid to input id:${inputId}`)
       return false;
     } else {
+        thisId(inputId).classList.remove('is-invalid');
+        thisId(inputId).classList.add('is-valid');
       inputError.textContent = '';
+      console.log(`added class 'is-valid to input id:${inputId}`)
     return true
     }
+}
+ 
+ function thisId(id) {
+     console.log(`thisId function is tied to id:${id}`);
+    return document.getElementById(id);
+ }
+
+function thisId(id) {
+    console.log(`thisId function is tied to id:${id}`);
+   return document.getElementById(id);
+
+}
+
+function cellHTML(element, index, content) {
+    console.log(`cellHTML added ${content} to cell ${index}`);
+   return element.insertCell(index).innerHTML = content;
+}
+
+function clearValid(id){
+    thisId(id).className = 'form-control';
+    
 }
