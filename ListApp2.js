@@ -4,6 +4,11 @@ document.getElementById('task').focus();
 
 document.getElementById('btn').addEventListener('click', () => {
     console.log('button working')
+
+    let isTaskValid = isValid('task', 'task-error');
+    let isSetterValid = isValid('setter', 'setter-error');
+
+    if (isTaskValid && isSetterValid) {
     let date = new Date();
     let time = date.toLocaleString();
     let table = document.getElementById('list');
@@ -19,6 +24,7 @@ document.getElementById('btn').addEventListener('click', () => {
     document.getElementById('setter').value = '';
     document.getElementById('task').focus();
     // id++;
+    }
 });
 
 document.getElementById('rick').addEventListener('mouseover', () => {
@@ -53,3 +59,16 @@ document.addEventListener('keypress', function(event) {
       document.getElementById('btn').click();
     }
   });
+
+ function isValid(formInput, formInputError) {
+   let input = document.getElementById(formInput).value;
+   let inputError = document.getElementById(formInputError);
+  
+   if (input === '') {
+       inputError.textContent = 'Field is Empty';
+      return false;
+    } else {
+      inputError.textContent = '';
+    return true
+    }
+}
