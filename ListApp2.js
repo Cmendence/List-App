@@ -32,9 +32,11 @@ thisId('btn').addEventListener('click', () => {
 thisId('rick').addEventListener('mouseover', () => {
     thisId('rick').innerHTML = `I SAID DON'T`;
 })
+
 thisId('rick').addEventListener('mouseout', () => {
     thisId('rick').innerHTML = `Don't click this`;
 })
+
 thisId('rick').addEventListener('click', () => {
     window.open("https://www.youtube.com/watch?v=xvFZjo5PgG0", "_blank");
 })
@@ -89,11 +91,6 @@ document.addEventListener('keypress', function(event) {
     return document.getElementById(id);
  }
 
-function thisId(id) {
-    console.log(`thisId function is tied to id:${id}`);
-   return document.getElementById(id);
-
-}
 
 function cellHTML(element, index, content) {
     console.log(`cellHTML added ${content} to cell ${index}`);
