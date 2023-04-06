@@ -1,12 +1,13 @@
 let id = 1;
 
+//set cursor to first input field on load
 thisId('task').focus();
 
 thisId('btn').addEventListener('click', () => {
 
     let isTaskValid = isFieldValid('task', 'task-error');
     let isSetterValid = isFieldValid('setter', 'setter-error');
-
+// validate the fields
     if (isTaskValid && isSetterValid) {
     let date = new Date();
     let time = date.toLocaleString();
@@ -40,6 +41,10 @@ thisId('rick').addEventListener('mouseout', () => {
 thisId('rick').addEventListener('click', () => {
     window.open("https://www.youtube.com/watch?v=xvFZjo5PgG0", "_blank");
 })
+
+
+//creates delete button to be added in cell 4 of the row. function creates the button, sets the id, innerHTML, 
+//and class name. Adds the onclick method and removes the element with its own id
 
 function createDeleteButton(id) {
     let btn = document.createElement('button')
@@ -86,16 +91,21 @@ document.addEventListener('keypress', function(event) {
     }
 }
  
+//shorthand for document.getElementById(id)
  function thisId(id) {
      console.log(`thisId function is tied to id:${id}`);
     return document.getElementById(id);
  }
 
+// adds a cell to an element(for this use it's a table). function takes the element, 
+//the index of the row you want to occupy, and the the innterHTML content.
 
 function cellHTML(element, index, content) {
     console.log(`cellHTML added ${content} to cell ${index}`);
    return element.insertCell(index).innerHTML = content;
 }
+// after a successful row addition, it resets the class of the input to "form-control"(don't know how to restore original class)
+// I guess I could check if it's there already?
 
 function clearValid(id){
     thisId(id).className = 'form-control';
