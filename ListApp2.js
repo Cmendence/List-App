@@ -11,8 +11,8 @@ thisId('btn').addEventListener('click', () => {
     if (isTaskValid && isSetterValid) {
     let date = new Date();
     let time = date.toLocaleString();
-    let table = thisId('list');
-    let row = table.insertRow(-1);
+    let tableBody = document.getElementById('tableBody');
+    let row = tableBody.insertRow(0);
     row.setAttribute('id', `item-${id}`);
     cellHTML(row, 0, id);
     cellHTML(row, 1, time);
@@ -110,4 +110,16 @@ function cellHTML(element, index, content) {
 function clearValid(id){
     thisId(id).className = 'form-control';
     
+}
+
+document.getElementById('clear-history').addEventListener('click', () => {
+    let tableBody = document.getElementById('tableBody');
+    clearHistory(tableBody)
+    
+})
+
+function clearHistory(element) {
+    while(element.firstChild) {
+        element.removeChild(element.firstChild);
+    }
 }

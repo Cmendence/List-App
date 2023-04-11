@@ -33,17 +33,25 @@
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-sm">
             <button id="btn" class="btn btn-success mt-3 mb-3">Create</button>
+            </div>
+            <div class="col-sm">
+                <button id="clear-history" class="btn btn-danger tex-light mt-3 mb-3">Clear All</button>
+            </div>
+            </div>
         </div>
     </div>
     <table id="list" class="table table-warning table-striped">
-        <tr>
+        <thead>
             <th>#</th>
             <th>Date Created</th>
             <th>Task</th>
             <th>Set By</th>
             <th>Action</th>
-        </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
     </table>
     <button id="rick" class="btn btn-primary">Don't click this</button>
 
