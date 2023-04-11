@@ -61,7 +61,7 @@ function createDeleteButton(id) {
 }
 
 // Execute a function when the user presses a key on the keyboard
-document.addEventListener('keypress', function(event) {
+document.addEventListener('keypress', (event) => {
     // If the user presses the "Enter" key on the keyboard
     if (event.key === 'Enter') {
       // Trigger the button element with a click
