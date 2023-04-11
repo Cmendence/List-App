@@ -112,14 +112,16 @@ function clearValid(id){
     
 }
 
-document.getElementById('clear-history').addEventListener('click', () => {
-    let tableBody = document.getElementById('tableBody');
-    clearHistory(tableBody)
-    
-})
+//clear all button
 
-function clearHistory(element) {
-    while(element.firstChild) {
-        element.removeChild(element.firstChild);
-    }
-}
+// document.getElementById('clear-history').addEventListener('click', () => {
+//     let tableBody = document.getElementById('tableBody');
+//     clearHistory(tableBody);
+    
+// })
+
+// function clearHistory(element) {
+//     while(element.firstChild) {
+//         element.removeChild(element.firstChild);
+//     }
+// }
