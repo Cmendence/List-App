@@ -1,9 +1,9 @@
 let id = 1;
 
 //set cursor to first input field on load
-thisId('task').focus();
+document.getElementById('task').focus();
 
-thisId('btn').addEventListener('click', () => {
+document.getElementById('btn').addEventListener('click', () => {
 
     let isTaskValid = isFieldValid('task', 'task-error');
     let isSetterValid = isFieldValid('setter', 'setter-error');
@@ -14,31 +14,33 @@ thisId('btn').addEventListener('click', () => {
     let tableBody = document.getElementById('tableBody');
     let row = tableBody.insertRow(0);
     row.setAttribute('id', `item-${id}`);
-    cellHTML(row, 0, id);
-    cellHTML(row, 1, time);
-    cellHTML(row, 2, thisId('task').value)
-    cellHTML(row, 3, thisId('setter').value)
+
+    row.insertCell(0).innerHTML= id;
+    row.insertCell(1).innerHTML= time;
+    row.insertCell(2).innerHTML= document.getElementById('task').value
+    row.insertCell(3).innerHTML= document.getElementById('setter').value
+
     let deleteBtn = row.insertCell(4);
     deleteBtn.appendChild(createDeleteButton(id++));
-    thisId('task').value = '';
-    thisId('setter').value = '';
+    document.getElementById('task').value = '';
+    document.getElementById('setter').value = '';
     clearValid('task');
     clearValid('setter');
-    thisId('task').focus();
+    document.getElementById('task').focus();
 
     // id++;
     }
 });
 
-thisId('rick').addEventListener('mouseover', () => {
-    thisId('rick').innerHTML = `I SAID DON'T`;
+document.getElementById('rick').addEventListener('mouseover', () => {
+    document.getElementById('rick').innerHTML = `I SAID DON'T`;
 })
 
-thisId('rick').addEventListener('mouseout', () => {
-    thisId('rick').innerHTML = `Don't click this`;
+document.getElementById('rick').addEventListener('mouseout', () => {
+    document.getElementById('rick').innerHTML = `Don't click this`;
 })
 
-thisId('rick').addEventListener('click', () => {
+document.getElementById('rick').addEventListener('click', () => {
     window.open("https://www.youtube.com/watch?v=xvFZjo5PgG0", "_blank");
 })
 
@@ -53,7 +55,7 @@ function createDeleteButton(id) {
     btn.className = 'btn  btn-success';
     btn.onclick = () => {
         console.log(`Deleting element with id: item-${id}`);
-        let elementToDelete = thisId(`item-${id}`);
+        let elementToDelete = document.getElementById(`item-${id}`);
         elementToDelete.parentNode.removeChild(elementToDelete);
     }
 
@@ -65,7 +67,7 @@ document.addEventListener('keypress', (event) => {
     // If the user presses the "Enter" key on the keyboard
     if (event.key === 'Enter') {
       // Trigger the button element with a click
-      thisId('btn').click();
+      document.getElementById('btn').click();
     }
   });
 
@@ -74,28 +76,24 @@ document.addEventListener('keypress', (event) => {
   //the textContent to 'field is empty' and adds the class 'is-valid', otherwise it leaves the content empty and adds the class 'is-valid'.
 
  function isFieldValid(inputId, inputErrorId) {
-   let input = thisId(inputId).value;
-   let inputError = thisId(inputErrorId);
+   let input = document.getElementById(inputId).value;
+   let inputError = document.getElementById(inputErrorId);
   
    if (input === '') {
-    thisId(inputId).classList.add('is-invalid');
+    document.getElementById(inputId).classList.add('is-invalid');
        inputError.textContent = 'Field is Empty';
        console.log(`added class 'is-invalid to input id:${inputId}`)
       return false;
     } else {
-        thisId(inputId).classList.remove('is-invalid');
-        thisId(inputId).classList.add('is-valid');
+        document.getElementById(inputId).classList.remove('is-invalid');
+        document.getElementById(inputId).classList.add('is-valid');
       inputError.textContent = '';
       console.log(`added class 'is-valid to input id:${inputId}`)
     return true
     }
 }
  
-//shorthand for document.getElementById(id)
- function thisId(id) {
-     console.log(`thisId function is tied to id:${id}`);
-    return document.getElementById(id);
- }
+
 
 // adds a cell to an element(for this use it's a table). function takes the element, 
 //the index of the row you want to occupy, and the the innterHTML content.
@@ -108,7 +106,7 @@ function cellHTML(element, index, content) {
 // I guess I could check if it's there already?
 
 function clearValid(id){
-    thisId(id).className = 'form-control';
+    document.getElementById(id).className = 'form-control';
     
 }
 
